@@ -1,0 +1,13 @@
+public class AccountController {
+       public List<contact> ContactList {get; set;}
+       public String accountId {get; set;}
+       public String ContactName {get; set;}
+       public AccountController(ApexPages.StandardController controller) {
+              accountId = ApexPages.currentPage().getParameters().get('id');
+               ContactList = [SELECT Name,Id FROM Contact WHERE Account.Id=:accountId];
+               for(Contact con : ContactList) {
+                      ContactName = con.Name;
+                      system.debug(ContactName);
+                 }                  
+           }
+    }
